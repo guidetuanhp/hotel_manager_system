@@ -26,7 +26,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu" GridPane.rowIndex="1">
          <children>
-            <Button id="active" fx:id="booking" alignment="TOP_LEFT" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="book /check out">
+            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인, 체크아웃">
                <graphic>
                   <FontAwesomeIconView glyphName="HOTEL" size="20" />
                </graphic>
@@ -37,7 +37,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="manager" alignment="TOP_LEFT" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text=" Managment">
+            <Button fx:id="manager" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="관리">
                <graphic>
                   <FontAwesomeIconView glyphName="GEARS" size="17" />
                </graphic>
@@ -48,7 +48,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="statiitics" alignment="TOP_LEFT" layoutX="18.0" layoutY="109.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="Statistical">
+            <Button fx:id="statiitics" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="18.0" layoutY="109.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="통계">
                <graphic>
                   <FontAwesomeIconView glyphName="BAR_CHART" size="24" />
                </graphic>
@@ -109,11 +109,6 @@
             </GridPane>
             <HBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <FontAwesomeIconView glyphName="GEAR" size="20">
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </FontAwesomeIconView>
                   <ImageView fx:id="avatar" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -144,7 +139,7 @@
                         </FontAwesomeIconView>
                      </children>
                   </HBox>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="214.0" styleClass="btn_submenu" text="All room" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="179.0" styleClass="btn_submenu" text="모두 객실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -155,7 +150,7 @@
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="Empty room" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="공실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -166,7 +161,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="Repair room" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="정리 객실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -185,7 +180,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" maxWidth="452.0" minWidth="450.0" prefHeight="381.0" prefWidth="452.0">
                      <children>
-                        <Label text="Booking Room">
+                        <Label text="체크인 정보">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -194,7 +189,7 @@
                            <children>
                               <VBox prefHeight="360.0" prefWidth="233.0">
                                  <children>
-                                    <Label text="Room Name: ">
+                                    <Label text="객실: ">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -202,7 +197,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="29.0" layoutY="20.0" text="Status:">
+                                    <Label layoutX="29.0" layoutY="20.0" text="상태:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -210,7 +205,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="45.0" text="Price">
+                                    <Label layoutX="10.0" layoutY="45.0" text="가격:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -218,7 +213,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="70.0" text="Capacity">
+                                    <Label layoutX="10.0" layoutY="70.0" text="종류:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -226,7 +221,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="145.0" text="Customer">
+                                    <Label layoutX="10.0" layoutY="145.0" text="고객:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -234,7 +229,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="170.0" text="Identity Card">
+                                    <Label layoutX="10.0" layoutY="170.0" text="주민등록번호:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -242,7 +237,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="195.0" text="Booking date">
+                                    <Label layoutX="10.0" layoutY="195.0" text="체크인 날:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -250,7 +245,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="220.0" text="created date">
+                                    <Label layoutX="10.0" layoutY="220.0" text="영수증 발생 날">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -258,7 +253,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="245.0" text="payment appointment date">
+                                    <Label layoutX="10.0" layoutY="245.0" text="체크아웃 날:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -268,9 +263,9 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox prefHeight="349.0" prefWidth="127.0">
+                              <VBox prefHeight="360.0" prefWidth="164.0">
                                  <children>
-                                    <Label fx:id="roomName" text="Room Name: ">
+                                    <Label fx:id="roomName" text="객실: ">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -278,7 +273,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="roomStatus" text="Status:">
+                                    <Label fx:id="roomStatus" text="상태:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -286,7 +281,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="price" text="Price">
+                                    <Label fx:id="price" text="가격:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -294,7 +289,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="capacity" text="Capacity">
+                                    <Label fx:id="capacity" text="종류:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -302,7 +297,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="cus_name" layoutX="10.0" layoutY="145.0" text="Capacity">
+                                    <Label fx:id="cus_name" layoutX="10.0" layoutY="145.0" text="고객:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -310,7 +305,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="card" layoutX="10.0" layoutY="170.0" text="Capacity">
+                                    <Label fx:id="card" layoutX="10.0" layoutY="170.0" text="주민등록번호:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -318,7 +313,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="bookingdate" layoutX="10.0" layoutY="195.0" text="Capacity">
+                                    <Label fx:id="bookingdate" layoutX="10.0" layoutY="195.0" text="체크인 날:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -326,7 +321,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="createdDate" layoutX="10.0" layoutY="220.0" text="Capacity">
+                                    <Label fx:id="createdDate" layoutX="10.0" layoutY="220.0" text="영수증 발생 날">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -334,7 +329,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="returndate" layoutX="10.0" layoutY="245.0" text="Capacity">
+                                    <Label fx:id="returndate" layoutX="10.0" layoutY="245.0" text="체크아웃 날:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -357,7 +352,7 @@
                            <children>
                               <VBox prefHeight="360.0" prefWidth="233.0">
                                  <children>
-                                    <Label text="actual payment date">
+                                    <Label text="겔제 날:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -365,7 +360,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="29.0" layoutY="20.0" text="number of days overdue">
+                                    <Label layoutX="29.0" layoutY="20.0" text="열체 일수:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -373,7 +368,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="45.0" text="fine">
+                                    <Label layoutX="10.0" layoutY="45.0" text="벌금:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -381,7 +376,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="145.0" text="service fee">
+                                    <Label layoutX="10.0" layoutY="145.0" text="서비스 가격:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -389,7 +384,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="70.0" text="total amount">
+                                    <Label layoutX="10.0" layoutY="70.0" text="총:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -397,7 +392,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="145.0" text="Note">
+                                    <Label layoutX="10.0" layoutY="145.0" text="사항:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -405,7 +400,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Button mnemonicParsing="false" onAction="#payment" prefHeight="25.0" prefWidth="240.0" text="PAYMENT CONFIRMATION">
+                                    <Button mnemonicParsing="false" onAction="#payment" prefHeight="25.0" prefWidth="240.0" text="결제">
                                        <VBox.margin>
                                           <Insets top="100.0" />
                                        </VBox.margin>
@@ -414,7 +409,7 @@
                               </VBox>
                               <VBox prefHeight="349.0" prefWidth="127.0">
                                  <children>
-                                    <Label fx:id="actualreturndate" text="Room Name: ">
+                                    <Label fx:id="actualreturndate" text="객실:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -422,7 +417,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="overDay" text="Status:">
+                                    <Label fx:id="overDay" text="상태:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -430,7 +425,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="fine" text="Price">
+                                    <Label fx:id="fine" text="가격:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -438,7 +433,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="serviceFee" layoutX="10.0" layoutY="105.0" text="Price">
+                                    <Label fx:id="serviceFee" layoutX="10.0" layoutY="105.0" text="가격:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -446,7 +441,7 @@
                                           <Insets top="15.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label fx:id="totalAmount" text="Capacity">
+                                    <Label fx:id="totalAmount" text="종류:">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

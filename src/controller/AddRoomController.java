@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import repository.RoomRepository;
+import service.Message;
 import service.NotificationWindow;
 import service.SwitchToScene;
 import upload.FileUpload;
@@ -72,7 +73,7 @@ public class AddRoomController extends FrameController {
 
 	@FXML
 	void addOrUpdate(ActionEvent event) {
-		// add new room
+		
 		if (txt_id.getText().equals("")) {
 			Room room = new Room();
 			room.setCapacity(Integer.valueOf(txt_capacity.getText()));
@@ -90,11 +91,14 @@ public class AddRoomController extends FrameController {
 				room.setLinkImage(link);
 				System.out.println();
 				if (roomRepository.save(room)) {
-					NotificationWindow.showNotification("success", "add room success!");
+					NotificationWindow.showNotification("성공", "객실 추가 성공!");
 				}
 			}
+			else {
+				Message.getMess("사진 선택해야합니다!");
+			}
 		}
-		// update
+		
 		else {
 			Room room = roomRepository.findById(Integer.valueOf(txt_id.getText()));
 			room.setCapacity(Integer.valueOf(txt_capacity.getText()));
@@ -112,7 +116,7 @@ public class AddRoomController extends FrameController {
 				room.setLinkImage(link);
 			}
 			if (roomRepository.update(room)) {
-				NotificationWindow.showNotification("success", "update room successful!");
+				NotificationWindow.showNotification("성공", "객실 수정 성공!");
 			}
 		}
 	}

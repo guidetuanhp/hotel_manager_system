@@ -87,14 +87,14 @@ public class AddServiceInvoice extends FrameController {
 		customer.setText(invoice.getCustomer().getName());
 		setInitList();
 	}
-
+	// add service to used room 
 	public void setInitList() {
 		vbox_listService.getChildren().clear();
 		Room room = roomRe.findById(roomId);
 		Invoice i = invoiceRe.findByRoomIdAndCardCustomer(room.getIdCardCustomer());
 		for (DetailInvoice d : invoiceRe.findByInvoiceId(invoice.getId())) {
-			String ser = "service name: " + d.getServices().getName() + ", price: " + d.getServices().getPrice()
-					+ ", created date: " + d.getCreatedDate();
+			String ser = "서비스: " + d.getServices().getName() + ", 가격: " + d.getServices().getPrice()
+					+ ", 시간: " + d.getCreatedDate();
 			Label label = new Label(ser);
 			vbox_listService.getChildren().add(label);
 		}
@@ -121,7 +121,7 @@ public class AddServiceInvoice extends FrameController {
 					VBox vBox = new VBox();
 					vBox.setPrefHeight(100);
 					vBox.setPrefWidth(200);
-					Button update = new Button("Add service to invoice");
+					Button update = new Button("서비스 추가");
 					update.setPrefWidth(200);
 					update.setPrefHeight(50);
 					vBox.getChildren().add(update);
@@ -137,7 +137,7 @@ public class AddServiceInvoice extends FrameController {
 
 						invoiceRe.saveDetail(detailInvoice);
 						if (detailInvoice.getId() != null) {
-							Message.getMess("add successful");
+							Message.getMess("서비스 추가 성공");
 							setInitList();
 						}
 					});

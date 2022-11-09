@@ -143,7 +143,7 @@ public class FrameController implements Initializable {
 	}
 
 	public void setLogo() {
-		File is = new File("image/LOGO1.png");
+		File is = new File("image/logo.jpg");
 		InputStream ip = null;
 		try {
 			ip = new FileInputStream(is);
@@ -159,11 +159,11 @@ public class FrameController implements Initializable {
 		booking.setId("");
 		statiitics.setId("");
 		List<Button> list = new ArrayList<Button>();
-		Button button = new Button("Add Account");
-		Button button1 = new Button("List Account");
-		Button button3 = new Button("List Booking Invoice");
-		Button button5 = new Button("List Service");
-		Button button6 = new Button("List Customer");
+		Button button = new Button("계정 주가");
+		Button button1 = new Button("리스트 계정");
+		Button button3 = new Button("리스트 영수증 ");
+		Button button5 = new Button("리스트 서비스");
+		Button button6 = new Button("리스트 고객");
 		list.add(button1);
 		list.add(button3);
 		list.add(button5);
@@ -191,11 +191,11 @@ public class FrameController implements Initializable {
 		manager.setId("");
 		statiitics.setId("");
 		List<Button> list = new ArrayList<Button>();
-		Button button = new Button("Add Room");
-		Button button1 = new Button("All Room");
-		Button button2 = new Button("Empty Room");
-		Button button3 = new Button("Repair Room");
-		Button button4 = new Button("inhabited");
+		Button button = new Button("객실 추가");
+		Button button1 = new Button("모두 객실");
+		Button button2 = new Button("공실");
+		Button button3 = new Button("정리 객실");
+		Button button4 = new Button("사용중 객실");
 		button.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			AddRoomController.id = null;
 			new SwitchToScene().switchToAddRoom(event, SwitchToScene.addRoom);

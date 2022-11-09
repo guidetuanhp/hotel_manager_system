@@ -22,15 +22,25 @@ public class LoginController {
 
 	@FXML
 	void login(ActionEvent event) {
-		Account account = accountRepo.checkLogin(username.getText(), password.getText());
-		if (account != null) {
-			SwitchToScene sw = new SwitchToScene();
-			Contains.account = account;
-			System.out.println(Contains.account);
-			sw.switchToAddRoom(event, sw.listRoom);
+		
+		if (username.getText().length() == 0 || password.getText().length() == 0)
+		{
+			Message.getMess("아이디 비밀번호 입력해야합니다.");
 		}
-		else {
-			Message.getMess("login failure");
+		else
+		{
+			Account account = accountRepo.checkLogin(username.getText(), password.getText());
+			
+			if (account != null) {
+				SwitchToScene sw = new SwitchToScene();
+				Contains.account = account;
+				System.out.println(Contains.account);
+				sw.switchToAddRoom(event, sw.listRoom);
+			}
+			else {
+				Message.getMess("로그인 실패");
+			}
 		}
+		
 	}
 }

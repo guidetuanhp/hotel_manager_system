@@ -83,17 +83,17 @@ public class ListServiceController extends FrameController {
     		services.setId(id);
     		try {
 				serviceRepos.update(services);
-    			Message.getMess("update success");
+    			Message.getMess("수정 성공");
 			} catch (Exception e) {
-				Message.getMess("update failure");
+				Message.getMess("수정 실패");
 			}
     	}
     	else {
     		try {
 				serviceRepos.save(services);
-    			Message.getMess("add success");
+    			Message.getMess("추가 성공");
 			} catch (Exception e) {
-				Message.getMess("add failure");
+				Message.getMess("추가 실패");
 			}
     	}
     	listService.clear();
@@ -143,10 +143,10 @@ public class ListServiceController extends FrameController {
 					VBox vBox = new VBox();
 					vBox.setPrefHeight(100);
 					vBox.setPrefWidth(200);
-					Button update = new Button("update this service");
+					Button update = new Button("수정하기");
 					update.setPrefWidth(200);
 					update.setPrefHeight(50);
-					Button delete = new Button("Delete this service");
+					Button delete = new Button("삭제하기");
 					delete.setPrefWidth(200);
 					delete.setPrefHeight(50);
 					vBox.getChildren().add(update);
@@ -184,9 +184,9 @@ public class ListServiceController extends FrameController {
 		col_name.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
 		col_price.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
 		col_type.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
-		allType.add("Dish");
-		allType.add("Drinks");
-		allType.add("Others");
+		allType.add("dish");
+		allType.add("drink");
+		allType.add("others");
 		txt_type.setItems(allType);
 		for(Services s : serviceRepos.findAll()) {
 			listService.add(s);

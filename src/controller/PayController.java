@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
+
 import entity.Customer;
 import entity.DetailInvoice;
 import entity.Invoice;
@@ -97,7 +98,7 @@ public class PayController extends FrameController {
 				Integer.valueOf(overDay.getText()), Double.valueOf(fine.getText()),
 				Double.valueOf(totalAmount.getText()),
 				"biil_" + customer.getName() + "_" + new Timestamp(System.currentTimeMillis()).toString().split(" ")[0] + ".pdf");
-		NotificationWindow.showNotification("successful", "create bill " + customer.getName());
+		NotificationWindow.showNotification("성공", "영수증 발생 " + customer.getName() + " 성공");
     	invoiceRe.update(invoiceG);
     	room.setIdCardCustomer(null);
     	roomRe.update(room);
@@ -107,7 +108,7 @@ public class PayController extends FrameController {
 
 	public void setInit() {
 		roomName.setText(room.getRoomName());
-		roomStatus.setText("normal");
+		roomStatus.setText("일반");
 		price.setText(room.getPrice().toString());
 		capacity.setText(room.getCapacity().toString());
 		String now = new Timestamp(System.currentTimeMillis()).toString().split(" ")[0];

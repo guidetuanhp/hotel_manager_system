@@ -65,7 +65,10 @@ public class RoomController extends FrameController {
 	private ImageView empty_room;
 
 	@FXML
-	private ImageView not_empty_room;
+	private ImageView using_room;
+	
+	@FXML
+	private ImageView fixing_room;
 
 	@FXML
 	private Button booking;
@@ -84,14 +87,14 @@ public class RoomController extends FrameController {
 		list.clear();
 		list = roomRepo.findAll();
 		String value = numberOfPeople.getValue();
-		if (value.equalsIgnoreCase("single room")) {
+		if (value.equalsIgnoreCase("독방")) {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getCapacity() > 1) {
 					list.remove(i);
 					--i;
 				}
 			}
-		} else if (value.equalsIgnoreCase("double room")) {
+		} else if (value.equalsIgnoreCase("더블룸")) {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getCapacity() > 2) {
 					list.remove(i);
@@ -128,16 +131,23 @@ public class RoomController extends FrameController {
 					list.get(i).getRoomStatus().equalsIgnoreCase("correcting"));
 			room.setPrefWidth(150);
 			room.setPrefHeight(150);
-			Label room_name = new Label("room: " + list.get(i).getRoomName());
-			Label price = new Label("price: " + list.get(i).getPrice());
+			Label room_name = new Label("객실: " + list.get(i).getRoomName());
+			Label price = new Label("가격: " + list.get(i).getPrice());
+			Label capacity = new Label("종류: " + list.get(i).getCapacity());
 			room_name.setFont(new Font(22));
+			//room_name.setTextFill(Color.web("#0076a3"));
 			price.setFont(new Font(22));
+			//price.setTextFill(Color.web("#0076a3"));
+			capacity.setFont(new Font(22));
+			//capacity.setTextFill(Color.web("#0076a3"));
 
+			// set picture room in main 
 			File file = new File("image/room_not.png");
 			if (list.get(i).getIdCardCustomer() == null) {
 				file = new File("image/room-active.png");
 				room_name.setTextFill(Color.rgb(255, 255, 255));
 				price.setTextFill(Color.rgb(255, 255, 255));
+				capacity.setTextFill(Color.rgb(255, 255, 255));
 				showListOptionBookRoom(room, 1, list.get(i).getId(), list.get(i).getRoomStatus().equalsIgnoreCase("correcting"));
 			}
 			if(list.get(i).getRoomStatus().equalsIgnoreCase("correcting")) {
@@ -155,6 +165,7 @@ public class RoomController extends FrameController {
 			room.setBackground(new Background(myBI));
 			room.getChildren().add(room_name);
 			room.getChildren().add(price);
+			room.getChildren().add(capacity);
 			hBox.getChildren().add(room);
 			hBox.setMargin(room, new Insets(0, 20, 0, 0));
 			++j;
@@ -183,7 +194,7 @@ public class RoomController extends FrameController {
 			VBox vBox = new VBox();
 			vBox.setPrefWidth(200);
 			vBox.setPrefHeight(300);
-			Button button = new Button("예약");
+			Button button = new Button("체크인/예약");
 			button.setPrefWidth(200);
 			button.setPrefHeight(50);
 
@@ -242,10 +253,10 @@ public class RoomController extends FrameController {
 				vBox2.setPrefWidth(200);
 				vBox2.setPrefHeight(100);
 				TextField idCard = new TextField(); 
-				idCard.setPromptText("id customer");
+				idCard.setPromptText("객실 번호 받기");
 				idCard.setPrefWidth(200);
 				idCard.setPrefHeight(50);
-				Button updateRoom = new Button("확인");
+				Button updateRoom = new Button("객실 번호 확인");
 				updateRoom.setPrefWidth(200);
 				updateRoom.setPrefHeight(50);
 				
@@ -260,7 +271,7 @@ public class RoomController extends FrameController {
 					Customer customer = customerRepository.findById(Integer.valueOf(idCard.getText()));
 					
 					if(customer == null) {
-						Message.getMess("고객 정보 확인 못 합니다.");
+						Message.getMess("고객 정보 확인할 수 없");
 					}
 					else if(customer != null) {
 						List<Invoice> listI = new ArrayList<Invoice>();
@@ -277,7 +288,7 @@ public class RoomController extends FrameController {
 							}
 						}
 						if(checks == 0) {
-							Message.getMess("예약 정보 못 찾습니다");
+							Message.getMess("예약 정보 확인 활 수 없음");
 						}
 					}
 					
@@ -295,31 +306,31 @@ public class RoomController extends FrameController {
 				popOver.hide();
 				try {
 					roomRepo.delete(idRoom);
-					NotificationWindow.showNotification("success", "객실 삭제 정공");
+					NotificationWindow.showNotification("성공", "객실 삭제 성공");
 				} catch (Exception e) {
-					Message.getMess("delete failure");
+					Message.getMess("객실 삭제 실패");
 				}
 			});
 			showInforCustomer.addEventHandler(MouseEvent.MOUSE_CLICKED, even -> {
 				popOver.hide();
 				Customer customer = customerRepository.findById(Integer.valueOf(rooms.getIdCardCustomer()));
-				System.out.println("infor customer, room id_ :" + idRoom);
+				System.out.println("객실 번호 :" + idRoom);
 				PopOver pop = new PopOver();
 				pop.setArrowLocation(ArrowLocation.TOP_CENTER);
 				VBox infor = new VBox();
 				infor.setPrefWidth(400);
 				infor.setPrefHeight(400);
 				Font font = new Font(20);
-				Label label = new Label("customer id: "+ customer.getId());
+				Label label = new Label("고객 번호: "+ customer.getId());
 				label.setFont(font);
 				label.setTextFill(Color.BLACK);
-				Label label1 = new Label("customer name: "+ customer.getName());
+				Label label1 = new Label("고객명: "+ customer.getName());
 				label1.setFont(font);
 				label1.setTextFill(Color.BLACK);
-				Label label2 = new Label("customer nationality: "+ customer.getNationality());
+				Label label2 = new Label("고객 국적: "+ customer.getNationality());
 				label2.setFont(font);
 				label2.setTextFill(Color.BLACK);
-				Label label3 = new Label("citizen identification number: "+ customer.getCitizenIdentificationNumber());
+				Label label3 = new Label("고객 주민등록번호: "+ customer.getCitizenIdentificationNumber());
 				label3.setFont(font);
 				label3.setTextFill(Color.BLACK);
 				infor.getChildren().add(label);
@@ -354,7 +365,7 @@ public class RoomController extends FrameController {
 			e.printStackTrace();
 		}
 		Image img = new Image(is, 150, 80, false, true);
-		not_empty_room.setImage(img);
+		using_room.setImage(img);
 
 		file = new File("image/room-active.png");
 		try {
@@ -364,6 +375,15 @@ public class RoomController extends FrameController {
 		}
 		img = new Image(is, 150, 80, false, true);
 		empty_room.setImage(img);
+		
+		file = new File("image/repair.png");
+		try {
+			is = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		img = new Image(is, 150, 80, false, true);
+		fixing_room.setImage(img);
 	}
 
 	public void setInitListRoom() {
@@ -378,9 +398,9 @@ public class RoomController extends FrameController {
 		setInitListRoom();
 		loadListRoom();
 		setNote();
-		listNumber.add("single room");
-		listNumber.add("double room");
-		listNumber.add("more than");
+		listNumber.add("독방");
+		listNumber.add("더블룸");
+		listNumber.add("모두 룸");
 		numberOfPeople.setItems(listNumber);
 	}
 

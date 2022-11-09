@@ -24,9 +24,9 @@ public class HibernateConnect {
 	static {
 		Configuration conf = new Configuration();
 		Properties props = new Properties();
-		// set gía trị cho properties
+		
 		props.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-		props.put(Environment.URL, "jdbc:mysql://localhost:3306/quanlykhachsan");
+		props.put(Environment.URL, "jdbc:mysql://localhost:3306/hotelmanager");
 		props.put(Environment.USER, "root");
 		props.put(Environment.PASS, "");
 		props.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");

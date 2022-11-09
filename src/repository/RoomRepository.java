@@ -75,9 +75,9 @@ public class RoomRepository{
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		List<Room> list = null;
 		Session session = HibernateConnect.getFactory().openSession();
-		Query query = session.createQuery("select r From Room r inner join r.invoices i where (i.bookingDate <= ?1 and i.returnDate >= ?1) and i.actualReturnDate is NUll");
-		query.setParameter(1, now);
+		Query query = session.createQuery("select r From Room r where r.idCardCustomer != NUll");
 		list = query.getResultList();
+		System.out.println(list);
 		session.close();
 		return list;
 	}

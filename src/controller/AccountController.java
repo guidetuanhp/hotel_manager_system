@@ -8,6 +8,7 @@ import org.controlsfx.control.PopOver;
 import entity.Account;
 import entity.Role;
 import entity.Services;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +56,8 @@ public class AccountController extends FrameController{
 
     @FXML
     private TableColumn<Account, Integer> col_active;
+    @FXML
+    private TableColumn<Account, String> col_role;
 
     @FXML
     private TextField txt_id;
@@ -136,21 +139,25 @@ public class AccountController extends FrameController{
     public void setColum() {
 		col_active.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
 		col_address.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
-		col_fullname.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+		col_fullname.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
 		col_password.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
 		col_phone.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
-		col_username.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+		col_username.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
+		col_role.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
 		
     }
     
     public void setInitTable() {
     	table.setItems(listAccount);
+    	System.out.println(listAccount);
     	col_active.setCellValueFactory(new PropertyValueFactory<>("actived"));
     	col_address.setCellValueFactory(new PropertyValueFactory<>("address"));
     	col_fullname.setCellValueFactory(new PropertyValueFactory<>("fullname"));
     	col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
     	col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
     	col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+    	col_role.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRoles().get(0).getRoleName()));
+    	
     }
     
     public void clickTable() {
@@ -181,16 +188,16 @@ public class AccountController extends FrameController{
 					vBox.setPrefWidth(200);
 					String str = "";
 					if(row.getItem().getActived()==1) {
-						str = "Block this account";
+						str = "계정 block";
 					}
 					else if(row.getItem().getActived()==0) {
-						str = "UnBlock this account";
+						str = "계정 unblock";
 					}
 					Button update = new Button(str);
 					update.setPrefWidth(200);
 					update.setPrefHeight(50);
 					
-					Button delete = new Button("Delete this account");
+					Button delete = new Button("계정 삭제");
 					delete.setPrefWidth(200);
 					delete.setPrefHeight(50);
 					
@@ -210,7 +217,7 @@ public class AccountController extends FrameController{
 					});
 					update.addEventHandler(MouseEvent.MOUSE_CLICKED, even -> {
 						Account a = row.getItem();
-						if(update.getText().equals("Block this account")) {
+						if(update.getText().equals("계정 block")) {
 							a.setActived(0);
 						}
 						else {

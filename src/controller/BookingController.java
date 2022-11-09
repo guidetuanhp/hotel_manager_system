@@ -87,6 +87,7 @@ public class BookingController extends FrameController {
 	private VBox vBox_List;
 
 	@FXML
+	// check in
 	void CheckTime(ActionEvent event) throws ParseException {
 		String starts = date_start.getValue().toString();
 		String ends = date_end.getValue().toString();
@@ -96,19 +97,26 @@ public class BookingController extends FrameController {
 		Timestamp start = new java.sql.Timestamp(parsedDate.getTime());
 		parsedDate = dateFormat.parse(ends);
 		Timestamp end = new java.sql.Timestamp(parsedDate.getTime());
-		if(start.before(new Timestamp(System.currentTimeMillis()))) {
-			Message.getMess("The start date errror!");
+		
+		
+        String currents = dateFormat.format(new Date());
+        parsedDate = dateFormat.parse(currents);
+		Timestamp current = new java.sql.Timestamp(parsedDate.getTime());
+		
+		if(start.before(current)) {
+			Message.getMess("시작 날짜 오류!");
 		}
-		if (start.after(end) || start.equals(end)) {
-			Message.getMess("The start date cannot be after the end date");
-		} else {
+		else if (start.after(end) || start.equals(end)) {
+			Message.getMess("시작 날짜는 종료 날짜 이후일 수 없습니다.");
+		} 
+		else {
 			for (Invoice i : listInvoice) {
 				if (((start.after(i.getBookingDate()) || start.equals(i.getBookingDate()))
 						&& (start.before(i.getReturnDate()) || start.equals(i.getReturnDate())))
 						|| (start.before(i.getBookingDate())
 								&& (end.after(i.getBookingDate()) || end.equals(i.getBookingDate())))) {
 					Message.getMess(
-							"has been booked for a period of time: " + i.getBookingDate() + " - " + i.getReturnDate());
+							"일정 기간 동안 예약되었습니다: " + i.getBookingDate() + " - " + i.getReturnDate());
 					return;
 				}
 			}
@@ -128,7 +136,7 @@ public class BookingController extends FrameController {
 			invoice.setRoom(roomP);
 			invoiceRepo.save(invoice);
 			if (invoice.getId() != null) {
-				Message.getMess("booking successful");
+				Message.getMess("체크인/예약 성공!");
 				setInitListInvoice();
 				if(checkNow(invoice)) {
 					roomP.setIdCardCustomer(customer.getId().toString());
@@ -147,7 +155,7 @@ public class BookingController extends FrameController {
 		}
 		return false;
 	}
-
+	//update room info
 	public void setInitRoom() {
 		Room room = roomRepo.findById(idRoom);
 		roomP = room;
@@ -158,11 +166,12 @@ public class BookingController extends FrameController {
 			roomStatus.setText("공실");
 			roomStatus.setTextFill(Color.GREEN);
 		} else {
-			roomStatus.setText("사용중 객실");
+			roomStatus.setText("사용중");
 			roomStatus.setTextFill(Color.RED);
 		}
-		capacity.setText("총 " + room.getCapacity().toString() + " 인");
+		capacity.setText(room.getCapacity().toString() + " 인");
 	}
+	//update list check in
 
 	public void setInitListInvoice() {
 		for (int i = 1; i < vBox_List.getChildren().size(); i++) {
@@ -173,7 +182,7 @@ public class BookingController extends FrameController {
 
 		for (Invoice i : listInvoice) {
 			String info = "객실: " + i.getRoom().getRoomName() + ", 체크인 날: " + i.getBookingDate()
-					+ ", 체크아웃 날: " + i.getReturnDate() + ",확정한 체크아웃 날: " + i.getActualReturnDate();
+					+ ", 체크아웃 날: " + i.getReturnDate() + ", 사실 체크아웃 날: " + i.getActualReturnDate();
 			Label label = new Label(info);
 			vBox_List.getChildren().add(label);
 			vBox_List.setMargin(label, new Insets(10, 0, 0, 10));

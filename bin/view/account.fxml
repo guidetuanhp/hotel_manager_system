@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -21,7 +20,7 @@
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="1216.0" style="-fx-background-color: #f6f8fc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="400.0" prefWidth="2000.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="400.0" prefWidth="3000.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -30,7 +29,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu" GridPane.rowIndex="1">
          <children>
-            <Button id="active" fx:id="booking" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="book /check out">
+            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인, 체크아웃">
                <graphic>
                   <FontAwesomeIconView glyphName="HOTEL" size="20" />
                </graphic>
@@ -41,7 +40,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="manager" alignment="TOP_LEFT" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text=" Managment">
+            <Button fx:id="manager" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="관리">
                <graphic>
                   <FontAwesomeIconView glyphName="GEARS" size="17" />
                </graphic>
@@ -52,7 +51,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="statiitics" alignment="TOP_LEFT" layoutX="18.0" layoutY="109.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="Statistical">
+            <Button fx:id="statiitics" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="18.0" layoutY="109.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="통계">
                <graphic>
                   <FontAwesomeIconView glyphName="BAR_CHART" size="24" />
                </graphic>
@@ -102,7 +101,7 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </FontAwesomeIconView>
-                        <TextField id="txt_search" fx:id="txt_search" onKeyReleased="#search" prefHeight="30.0" prefWidth="2000.0" promptText="search">
+                        <TextField id="txt_search" fx:id="txt_search" onKeyReleased="#search" prefHeight="30.0" prefWidth="2000.0" promptText="찾기">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -113,11 +112,6 @@
             </GridPane>
             <HBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <FontAwesomeIconView glyphName="GEAR" size="20">
-                     <HBox.margin>
-                        <Insets left="100.0" />
-                     </HBox.margin>
-                  </FontAwesomeIconView>
                   <ImageView fx:id="avatar" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -133,7 +127,7 @@
                <children>
                   <HBox prefHeight="65.0" prefWidth="200.0">
                      <children>
-                        <Button id="add_content" mnemonicParsing="false" prefHeight="57.0" prefWidth="123.0" text="객실 추자">
+                        <Button id="add_content" mnemonicParsing="false" prefHeight="57.0" prefWidth="123.0" text="객실 추가">
                            <graphic>
                               <FontAwesomeIconView glyphName="PENCIL_SQUARE_ALT" />
                            </graphic>
@@ -148,7 +142,7 @@
                         </FontAwesomeIconView>
                      </children>
                   </HBox>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="214.0" styleClass="btn_submenu" text="총 객실" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="179.0" styleClass="btn_submenu" text="모두 객실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -159,7 +153,7 @@
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="공실 " textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="공실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -170,7 +164,7 @@
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="수리 객실" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="180.0" styleClass="btn_submenu" text="정리 방" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -187,14 +181,15 @@
                </HBox.margin></VBox>
             <HBox maxWidth="2000.0" prefHeight="100.0" prefWidth="2000.0">
                <children>
-                  <TableView fx:id="table" prefHeight="381.0" prefWidth="2000.0">
+                  <TableView fx:id="table">
                     <columns>
-                      <TableColumn fx:id="col_username" prefWidth="66.0" text="username" />
-                      <TableColumn fx:id="col_fullname" prefWidth="84.0" text="fullname" />
-                        <TableColumn fx:id="col_phone" prefWidth="75.0" text="phone" />
-                        <TableColumn fx:id="col_address" prefWidth="75.0" text="address" />
-                        <TableColumn fx:id="col_password" prefWidth="54.0" text="password" />
-                        <TableColumn fx:id="col_active" prefWidth="50.0" text="active" />
+                      <TableColumn fx:id="col_username" prefWidth="66.0" text="아이디" />
+                      <TableColumn fx:id="col_fullname" prefWidth="84.0" text="이름" />
+                        <TableColumn fx:id="col_phone" prefWidth="75.0" text="전화 번호" />
+                        <TableColumn fx:id="col_address" prefWidth="75.0" text="주소" />
+                        <TableColumn fx:id="col_password" prefWidth="54.0" text="비밀번호" />
+                        <TableColumn fx:id="col_active" prefWidth="50.0" text="상태" />
+                        <TableColumn fx:id="col_role" prefWidth="50.0" text="롤" />
                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" />
@@ -202,7 +197,7 @@
                   </TableView>
                   <VBox alignment="TOP_CENTER" minWidth="380.0" prefHeight="2000.0" prefWidth="380.0">
                      <children>
-                        <Label text="Add Or Update Account">
+                        <Label text="계정 수정">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -212,22 +207,14 @@
                         </Label>
                         <HBox prefHeight="202.0" prefWidth="380.0">
                            <children>
-                              <VBox prefHeight="202.0" prefWidth="127.0">
+                              <VBox prefHeight="278.0" prefWidth="79.0">
                                  <children>
-                                    <Label layoutX="10.0" layoutY="20.0" text="Id">
+                                    <Label layoutX="10.0" layoutY="20.0" text="번호">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Label>
-                                    <Label text="FullName">
-                                       <font>
-                                          <Font size="17.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets top="10.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Username">
+                                    <Label text="이름">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -235,7 +222,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="27.0" text="password">
+                                    <Label text="아이디">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -243,7 +230,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="address">
+                                    <Label layoutX="10.0" layoutY="27.0" text="비밀번호">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -251,7 +238,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="phone">
+                                    <Label text="주소">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -259,7 +246,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="active">
+                                    <Label text="전화 번호">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -267,7 +254,15 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label text="role">
+                                    <Label text="상태">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <Label text="롤">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -290,7 +285,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField fx:id="txt_pass" text="123">
+                                    <TextField fx:id="txt_pass">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -321,8 +316,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ToggleButton mnemonicParsing="false" text="ToggleButton" />
-                              <Button mnemonicParsing="false" onAction="#addOrUpdate" prefHeight="25.0" prefWidth="127.0" text="Add Or Update" />
+                              <Button mnemonicParsing="false" onAction="#addOrUpdate" prefHeight="25.0" prefWidth="127.0" text="수정/추가하기" />
                            </children>
                         </HBox>
                      </children>
