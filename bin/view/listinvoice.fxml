@@ -28,7 +28,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu" GridPane.rowIndex="1">
          <children>
-            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인, 체크아웃">
+            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인/체크아웃">
                <graphic>
                   <FontAwesomeIconView glyphName="HOTEL" size="20" />
                </graphic>
@@ -100,7 +100,7 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </FontAwesomeIconView>
-                        <TextField id="txt_search" prefHeight="30.0" prefWidth="2000.0" promptText="찾기">
+                        <TextField id="txt_search" prefHeight="30.0" prefWidth="2000.0" promptText="search" text="찾기">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -111,6 +111,11 @@
             </GridPane>
             <HBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <FontAwesomeIconView glyphName="GEAR" size="20">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
                   <ImageView fx:id="avatar" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -141,7 +146,7 @@
                         </FontAwesomeIconView>
                      </children>
                   </HBox>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="181.0" styleClass="btn_submenu" text="모두 객실" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="214.0" styleClass="btn_submenu" text="모구 객실 " textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -180,29 +185,29 @@
                </HBox.margin></VBox>
             <HBox maxWidth="2000.0" prefHeight="100.0" prefWidth="2000.0">
                <children>
-                  <TableView fx:id="table" prefHeight="200.0" prefWidth="900.0">
+                  <TableView fx:id="table" prefHeight="200.0">
                     <columns>
-                      <TableColumn fx:id="col_id" prefWidth="53.0" text="번호" />
-                      <TableColumn fx:id="col_created_date" prefWidth="97.0" text="만든 날" />
+                      <TableColumn fx:id="col_id" prefWidth="53.0" text="코그" />
+                      <TableColumn fx:id="col_created_date" prefWidth="97.0" text="만든 일" />
                         <TableColumn fx:id="col_fine" prefWidth="61.0" text="번금" />
                         <TableColumn fx:id="col_note" prefWidth="90.0" text="사항" />
-                        <TableColumn fx:id="col_return" prefWidth="90.0" text="체크아웃 날" />
+                        <TableColumn fx:id="col_return" prefWidth="90.0" text="체크아웃 일" />
                         <TableColumn fx:id="col_total" prefWidth="90.0" text="총" />
-                        <TableColumn fx:id="col_created_by" prefWidth="90.0" text="만든 사름" />
+                        <TableColumn fx:id="col_created_by" prefWidth="90.0" text="만들 일" />
                         <TableColumn fx:id="col_customer" prefWidth="90.0" text="고객" />
                         <TableColumn fx:id="col_room" prefWidth="90.0" text="객실" />
-                        <TableColumn fx:id="col_booking_date" prefWidth="164.0" text="체크인 날" />
+                        <TableColumn fx:id="col_booking_date" prefWidth="164.0" text="체크인 일" />
                     </columns>
                   </TableView>
                </children></HBox>
             <VBox alignment="TOP_CENTER" minWidth="200.0" prefHeight="2000.0" prefWidth="200.0" style="-fx-background-color: #e8e8e8;">
                <children>
-                  <Label text="날 필터">
+                  <Label text="필터">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label text="시작 날">
+                  <Label text="시작 일">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -211,7 +216,7 @@
                      </VBox.margin>
                   </Label>
                   <DatePicker fx:id="startDate" prefHeight="34.0" prefWidth="174.0" />
-                  <Label text="끝 날">
+                  <Label text="킅 일">
                      <font>
                         <Font size="14.0" />
                      </font>

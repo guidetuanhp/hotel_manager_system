@@ -71,8 +71,12 @@ public class AccountRepository {
 	public void delete(Integer id) {
 		Session session = HibernateConnect.getFactory().openSession();
 		session.getTransaction().begin();
+		Role role = session.get(Role.class, id);
+		session.delete(role);
+		System.out.println(role);
 		Account account = session.get(Account.class, id);
 		session.delete(account);
+		System.out.println(account);
 		session.getTransaction().commit();
 		session.close();
 	}

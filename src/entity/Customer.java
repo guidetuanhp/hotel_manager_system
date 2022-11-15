@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Customer {
 	
 	private String nationality;
 	
-	@OneToMany(mappedBy = "customer")
+	@OneToMany(mappedBy = "customer", fetch = FetchType.EAGER)
 	private List<Invoice> invoices = new ArrayList<Invoice>();
 
 	public Customer() {
@@ -85,7 +86,7 @@ public class Customer {
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", citizenIdentificationNumber=" + citizenIdentificationNumber
-				+ ", createdDate=" + createdDate + ", nationality=" + nationality + "]";
+				+ ", createdDate=" + createdDate + ", nationality=" + nationality + ", invoices="+ invoices +"]";
 	}
 
 	

@@ -16,10 +16,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="1500.0" style="-fx-background-color: #f6f8fc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListCusomerController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="1036.0" style="-fx-background-color: #f6f8fc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListCusomerController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1500.0" minWidth="400.0" prefWidth="1500.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="400.0" prefWidth="2000.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="200.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -28,7 +28,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu" GridPane.rowIndex="1">
          <children>
-            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인, 체크아웃">
+            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인/체크아웃">
                <graphic>
                   <FontAwesomeIconView glyphName="HOTEL" size="20" />
                </graphic>
@@ -39,7 +39,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="manager" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="관리">
+            <Button fx:id="manager" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="17.0" layoutY="121.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="관리" textAlignment="CENTER">
                <graphic>
                   <FontAwesomeIconView glyphName="GEARS" size="17" />
                </graphic>
@@ -111,6 +111,11 @@
             </GridPane>
             <HBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <FontAwesomeIconView glyphName="GEAR" size="20">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
                   <ImageView fx:id="avatar" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -141,7 +146,7 @@
                         </FontAwesomeIconView>
                      </children>
                   </HBox>
-                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="178.0" styleClass="btn_submenu" text="모두 객실" textFill="#837f13">
+                  <Button alignment="BOTTOM_LEFT" layoutX="20.0" layoutY="85.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="214.0" styleClass="btn_submenu" text="모두 객실" textFill="#837f13">
                      <graphic>
                         <FontAwesomeIconView glyphName="LIST_ALT" size="14" />
                      </graphic>
@@ -180,21 +185,22 @@
                </HBox.margin></VBox>
             <HBox maxWidth="2000.0" prefHeight="100.0" prefWidth="2000.0">
                <children>
-                  <TableView fx:id="table" prefHeight="381.0" prefWidth="618.0">
+                  <TableView fx:id="table" prefHeight="381.0" prefWidth="2000.0">
                     <columns>
-                      <TableColumn fx:id="col_id" prefWidth="75.0" text="고객번호" />
+                      <TableColumn fx:id="col_id" prefWidth="75.0" text="코드" />
                         <TableColumn fx:id="col_name" prefWidth="103.0" text="이름" />
                       <TableColumn fx:id="col_card" prefWidth="181.0" text="주민등록번호" />
-                        <TableColumn fx:id="col_date" prefWidth="118.0" text="체크인 날" />
+                        <TableColumn fx:id="col_date" prefWidth="118.0" text="만든 일" />
                         <TableColumn fx:id="col_national" prefWidth="132.0" text="국적" />
+                        <TableColumn fx:id="col_room" prefWidth="132.0" text="객실" />
                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TableView>
-                  <VBox alignment="TOP_CENTER" minWidth="300.0" prefHeight="381.0" prefWidth="303.0" style="-fx-background-color: #ededed;">
+                  <VBox alignment="TOP_CENTER" minWidth="300.0" prefHeight="2000.0" prefWidth="300.0" style="-fx-background-color: #ededed;">
                      <children>
-                        <Label text="고객 필터">
+                        <Label text="고객 필터 ">
                            <font>
                               <Font size="19.0" />
                            </font>

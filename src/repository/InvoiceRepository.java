@@ -24,7 +24,19 @@ public class InvoiceRepository {
 		session.close();
 		return list;
 	}
-	
+	public List<Invoice> findReserveInvoice(Integer roomId){
+		List<Invoice> list = null;
+		String sql = "select i from Invoice i where i.actualReturnDate IS NULL and i.room = " + roomId;
+		System.out.println(sql);
+		
+		Session session = HibernateConnect.getFactory().openSession();
+		Query query = session.createQuery(sql);
+		//query.setParameter(1, roomId);
+		
+		list = query.getResultList();
+		session.close();
+		return list;
+	}
 	public List<Invoice> findByCustomer(Integer customerId){
 		List<Invoice> list = null;
 		Session session = HibernateConnect.getFactory().openSession();

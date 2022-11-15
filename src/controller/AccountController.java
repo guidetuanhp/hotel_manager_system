@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -27,6 +28,7 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import repository.AccountRepository;
+import service.SwitchToScene;
 
 public class AccountController extends FrameController{
 	
@@ -56,6 +58,7 @@ public class AccountController extends FrameController{
 
     @FXML
     private TableColumn<Account, Integer> col_active;
+    
     @FXML
     private TableColumn<Account, String> col_role;
 
@@ -82,13 +85,25 @@ public class AccountController extends FrameController{
 
     @FXML
     private CheckBox active;
-
+    
+    @FXML 
+    private Label lb_editaccount;
+    
+    @FXML 
+    private Button btn_editaccount;
+    
+    
     @FXML
     private ChoiceBox<String> choice_role;
-
+    @FXML
+	void refresh(ActionEvent event) {
+    	SwitchToScene sw = new SwitchToScene();
+		sw.switchToAddRoom(event, sw.account);
+	}
     @FXML
     void addOrUpdate(ActionEvent event) {
     	Account account = new Account();
+    	
     	if(!txt_id.getText().equals("")) {
     		account = accountRepository.findById(Integer.valueOf(txt_id.getText()));
     	}
@@ -165,6 +180,7 @@ public class AccountController extends FrameController{
 			TableRow<Account> row = new TableRow<>();
 			row.setOnMouseClicked(event -> {
 				if(event.getButton() == MouseButton.PRIMARY) {
+					
 					Account a = row.getItem();
 					txt_id.setText(a.getId().toString());
 					txt_addredd.setText(a.getAddress());
@@ -179,6 +195,9 @@ public class AccountController extends FrameController{
 					else {
 						active.setSelected(false);
 					}
+					lb_editaccount.setText("계정 수정");
+					btn_editaccount.setText("수정");
+					
 				}
 				else if(event.getButton() == MouseButton.SECONDARY) {
 					PopOver popOver = new PopOver();
@@ -244,11 +263,13 @@ public class AccountController extends FrameController{
 		accountRepository.findAll().forEach(p->{
 			listAccount.add(p);
 		});
+		System.out.println(listAccount);
 		setInitTable();
 		clickTable();
 		listRole.add("ADMIN");
 		listRole.add("EMPLOYEE");
 		choice_role.setItems(listRole);
+		//btn_editaccount.setText("skjafsa");
 	}
 
     

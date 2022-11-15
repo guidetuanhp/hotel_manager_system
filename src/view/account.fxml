@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="1216.0" style="-fx-background-color: #f6f8fc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="1280.0" style="-fx-background-color: #f6f8fc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="3000.0" minWidth="400.0" prefWidth="3000.0" />
@@ -181,23 +181,23 @@
                </HBox.margin></VBox>
             <HBox maxWidth="2000.0" prefHeight="100.0" prefWidth="2000.0">
                <children>
-                  <TableView fx:id="table">
+                  <TableView fx:id="table" prefHeight="381.0" prefWidth="700.0">
                     <columns>
-                      <TableColumn fx:id="col_username" prefWidth="66.0" text="아이디" />
+                      <TableColumn fx:id="col_username" prefWidth="50.0" text="아이디" />
                       <TableColumn fx:id="col_fullname" prefWidth="84.0" text="이름" />
-                        <TableColumn fx:id="col_phone" prefWidth="75.0" text="전화 번호" />
+                        <TableColumn fx:id="col_phone" prefWidth="60.0" text="전화 번호" />
                         <TableColumn fx:id="col_address" prefWidth="75.0" text="주소" />
                         <TableColumn fx:id="col_password" prefWidth="54.0" text="비밀번호" />
-                        <TableColumn fx:id="col_active" prefWidth="50.0" text="상태" />
-                        <TableColumn fx:id="col_role" prefWidth="50.0" text="롤" />
+                        <TableColumn fx:id="col_active" prefWidth="72.0" text="상태" />
+                        <TableColumn fx:id="col_role" prefWidth="84.0" text="롤" />
                     </columns>
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </TableView>
-                  <VBox alignment="TOP_CENTER" minWidth="380.0" prefHeight="2000.0" prefWidth="380.0">
+                  <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="526.0" prefWidth="337.0">
                      <children>
-                        <Label text="계정 수정">
+                        <Label fx:id="lb_editaccount" text="계정 추가">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -205,9 +205,9 @@
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <HBox prefHeight="202.0" prefWidth="380.0">
+                        <HBox fillHeight="false" prefHeight="297.0" prefWidth="407.0">
                            <children>
-                              <VBox prefHeight="278.0" prefWidth="79.0">
+                              <VBox prefHeight="285.0" prefWidth="83.0">
                                  <children>
                                     <Label layoutX="10.0" layoutY="20.0" text="번호">
                                        <font>
@@ -230,7 +230,7 @@
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <Label layoutX="10.0" layoutY="27.0" text="비밀번호">
+                                    <Label layoutX="10.0" layoutY="27.0" prefHeight="16.0" prefWidth="82.0" text="비밀번호">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
@@ -272,20 +272,20 @@
                                     </Label>
                                  </children>
                               </VBox>
-                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="202.0" prefWidth="262.0">
+                              <VBox layoutX="10.0" layoutY="10.0" prefHeight="297.0" prefWidth="211.0">
                                  <children>
-                                    <TextField fx:id="txt_id" layoutX="10.0" layoutY="20.0" />
-                                    <TextField fx:id="txt_name">
+                                    <TextField fx:id="txt_id" disable="true" layoutX="10.0" layoutY="20.0" prefHeight="25.0" prefWidth="275.0" />
+                                    <TextField fx:id="txt_name" prefHeight="25.0" prefWidth="245.0">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField fx:id="txt_user">
+                                    <TextField fx:id="txt_user" prefHeight="25.0" prefWidth="224.0">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
                                     </TextField>
-                                    <TextField fx:id="txt_pass">
+                                    <TextField fx:id="txt_pass" prefHeight="25.0" prefWidth="225.0">
                                        <VBox.margin>
                                           <Insets top="10.0" />
                                        </VBox.margin>
@@ -316,10 +316,18 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#addOrUpdate" prefHeight="25.0" prefWidth="127.0" text="수정/추가하기" />
+                              <Button fx:id="btn_editaccount" mnemonicParsing="false" onAction="#addOrUpdate" prefHeight="25.0" prefWidth="127.0" text="추가" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="127.0" text="재생" />
                            </children>
                         </HBox>
                      </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
                   </VBox>
                </children></HBox>
          </children>

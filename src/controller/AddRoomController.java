@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -52,7 +53,8 @@ public class AddRoomController extends FrameController {
 
 	@FXML
 	private ChoiceBox<String> txt_status;
-
+	
+	
 	@FXML
 	void openImage(MouseEvent event) throws MalformedURLException {
 		FileChooser fc = new FileChooser();
@@ -70,11 +72,17 @@ public class AddRoomController extends FrameController {
 
 		}
 	}
+	@FXML
+	void back(ActionEvent event) {
+    	SwitchToScene sw = new SwitchToScene();
+		sw.switchToAddRoom(event, sw.listRoom);
+	}
 
 	@FXML
 	void addOrUpdate(ActionEvent event) {
 		
 		if (txt_id.getText().equals("")) {
+			
 			Room room = new Room();
 			room.setCapacity(Integer.valueOf(txt_capacity.getText()));
 			room.setPrice(Double.valueOf(txt_price.getText()));
@@ -100,6 +108,7 @@ public class AddRoomController extends FrameController {
 		}
 		
 		else {
+			
 			Room room = roomRepository.findById(Integer.valueOf(txt_id.getText()));
 			room.setCapacity(Integer.valueOf(txt_capacity.getText()));
 			room.setPrice(Double.valueOf(txt_price.getText()));

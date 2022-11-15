@@ -2,19 +2,33 @@ package controller;
 
 import java.net.URL;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.PopOver;
+
 import entity.Customer;
+import entity.DetailInvoice;
+import entity.Invoice;
+import entity.Room;
+import entity.Services;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import repository.CustomerRepository;
 
 public class ListCusomerController extends FrameController{
@@ -40,6 +54,8 @@ public class ListCusomerController extends FrameController{
 
     @FXML
     private TableColumn<Customer, String> col_national;
+    @FXML
+    private TableColumn<Customer, String> col_room;
     
     @FXML
     private ChoiceBox<Integer> choice_month;
@@ -75,14 +91,19 @@ public class ListCusomerController extends FrameController{
     	}
     	setInitTable();
     }
-
+    
+  
     public void setInitTable() {
     	table.setItems(listCustomers);
+    	System.out.println(listCustomers);
     	col_name.setCellValueFactory(new PropertyValueFactory<>("name"));
     	col_id.setCellValueFactory(new PropertyValueFactory<>("id"));
     	col_card.setCellValueFactory(new PropertyValueFactory<>("citizenIdentificationNumber"));
     	col_date.setCellValueFactory(new PropertyValueFactory<>("createdDate"));
     	col_national.setCellValueFactory(new PropertyValueFactory<>("nationality"));
+    	
+
+    	col_room.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getInvoices().get(0).getRoom().getRoomName()));
     }
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -90,12 +111,16 @@ public class ListCusomerController extends FrameController{
 		customerRepository.findAll().forEach(p->{
 			listCustomers.add(p);
 		});
+		System.out.println(listCustomers);
+		
     	setInitTable();
+    	
     	col_id.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
-		col_name.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
-		col_card.prefWidthProperty().bind(table.widthProperty().multiply(0.3));
-		col_national.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+		col_name.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
+		col_card.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
+		col_national.prefWidthProperty().bind(table.widthProperty().multiply(0.1));
 		col_date.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
+		col_room.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
 		setValueChoiceBox();
 	}
 

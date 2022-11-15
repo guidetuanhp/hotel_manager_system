@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import entity.Account;
 import entity.Customer;
 import entity.Invoice;
 import entity.Room;
@@ -21,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -29,6 +31,7 @@ import repository.InvoiceRepository;
 import repository.RoomRepository;
 import service.Contains;
 import service.Message;
+import service.SwitchToScene;
 
 public class BookingController extends FrameController {
 
@@ -79,6 +82,8 @@ public class BookingController extends FrameController {
 
 	@FXML
 	private Button btn_checkTime;
+	
+
 
 	@FXML
 	private ImageView room_image;
@@ -87,7 +92,15 @@ public class BookingController extends FrameController {
 	private VBox vBox_List;
 
 	@FXML
+	
+	void btn_search(ActionEvent event) {
+		RoomController.list = roomRepo.findAll();
+		SwitchToScene sw = new SwitchToScene();
+		sw.switchToAddRoom(event, sw.listRoom);
+	    	
+	    }
 	// check in
+	@FXML
 	void CheckTime(ActionEvent event) throws ParseException {
 		String starts = date_start.getValue().toString();
 		String ends = date_end.getValue().toString();
@@ -178,16 +191,40 @@ public class BookingController extends FrameController {
 			vBox_List.getChildren().remove(i);
 			--i;
 		}
-		listInvoice = invoiceRepo.findByRoomId(idRoom);
+		listInvoice = invoiceRepo.findReserveInvoice(idRoom);
+		System.out.println("list invoice: ");
+		System.out.println(listInvoice);
 
 		for (Invoice i : listInvoice) {
-			String info = "객실: " + i.getRoom().getRoomName() + ", 체크인 날: " + i.getBookingDate()
-					+ ", 체크아웃 날: " + i.getReturnDate() + ", 사실 체크아웃 날: " + i.getActualReturnDate();
-			Label label = new Label(info);
-			vBox_List.getChildren().add(label);
-			vBox_List.setMargin(label, new Insets(10, 0, 0, 10));
+			// if time is future =>> wait customer coming
+			if (checkReserverTime(i)) {
+				String info =  "접수 번호: " + i.getCustomer().getId()+ ", 고객: " + i.getCustomer().getName() + ", 체크인 일: " + i.getBookingDate()
+				+ ", 체크아웃 일: " + i.getReturnDate();
+				Label label = new Label(info);
+				vBox_List.getChildren().add(label);
+				vBox_List.setMargin(label, new Insets(10, 0, 0, 10));
+				
+			}
+			//if time is past =>> don't show customer in list
+			else {
+				System.out.println("객실 안 온다.");
+				
+			}
+			
 		}
 	}
+	// check invoice customer not coming
+	@SuppressWarnings("deprecation")
+	public boolean checkReserverTime(Invoice i) {
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+
+		if (i.getReturnDate().getDate() > now.getDate() && i.getReturnDate().getMonth() == now.getMonth() || i.getReturnDate().getDate() < now.getDate() && i.getReturnDate().getMonth() >= now.getMonth()) {
+			
+			return true;
+		}
+		return false;
+	}
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

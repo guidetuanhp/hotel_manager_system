@@ -123,6 +123,13 @@ public class Report {
 	
 	public static void createBill(Room room, Customer customer, List<DetailInvoice> listDetail, Invoice invoice, Integer numdayOver, Double fine, Double totalAmount, String filename) {
 		try {
+			
+			String fontname = "Fonts\\GulimChe.ttf";
+			BaseFont bfont = BaseFont.createFont(fontname, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			Font font = new Font(bfont, 12);
+			
+			
+			
 			Document document = new Document();
 
 			OutputStream outputStream = new FileOutputStream(new File("file/"+filename));
@@ -131,20 +138,32 @@ public class Report {
 
 			document.open();
 			
-			document.add(new Paragraph("invoice number : " + invoice.getId()));
-			document.add(new Paragraph("영수증 발생 날: " + String .valueOf(new Timestamp(System.currentTimeMillis()).toString())));
+			document.add(new Paragraph("영수증 코드: " + invoice.getId(), font));
+			document.add(new Paragraph("영수증 발생 일: " + String .valueOf(new Timestamp(System.currentTimeMillis()).toString()), font));
 			PdfPTable tableCu = new PdfPTable(4);
 			tableCu.setSpacingBefore(40);
 			tableCu.setWidthPercentage(100);
 			PdfPCell cellCus;
 			// we add a cell with colspan 3
-			Font f = new Font(FontFamily.TIMES_ROMAN, 25.0f, Font.BOLD, BaseColor.BLACK);
+			Font f = new Font(bfont, 25.0f, Font.BOLD, BaseColor.BLACK);
 			Phrase phrase = new Phrase("영수증 정보", f);
 			cellCus = new PdfPCell(phrase);
 			cellCus.setColspan(4);
 			cellCus.setBorder(Rectangle.NO_BORDER);
 			tableCu.addCell(cellCus);
 
+			
+//			phrase = new Phrase(title);
+//			cellCus = new PdfPCell(phrase);
+//			cellCus.setBorder(Rectangle.NO_BORDER);
+//			cellCus.setPaddingTop(20f);
+//			tableCu.addCell(cellCus);
+//			f = new Font(bfont, 14.0f, Font.BOLD, BaseColor.BLACK);
+//			phrase = new Phrase(content, f);
+//			cellCus = new PdfPCell(phrase);
+//			cellCus.setBorder(Rectangle.NO_BORDER);
+//			cellCus.setPaddingTop(20f);
+//			tableCu.addCell(cellCus);
 			// id customer
 			setTableCustomer(cellCus, tableCu, f, phrase, "고객 번호", customer.getId().toString().toString());
 
@@ -160,12 +179,12 @@ public class Report {
 			// room
 			setTableCustomer(cellCus, tableCu, f, phrase, "객실", room.getRoomName());
 			setTableCustomer(cellCus, tableCu, f, phrase, "가격", room.getPrice()+"/day");
-			setTableCustomer(cellCus, tableCu, f, phrase, "체크인 날", invoice.getBookingDate().toString());
-			setTableCustomer(cellCus, tableCu, f, phrase, "체크아웃 날", invoice.getActualReturnDate().toString());
+			setTableCustomer(cellCus, tableCu, f, phrase, "체크인 일", invoice.getBookingDate().toString());
+			setTableCustomer(cellCus, tableCu, f, phrase, "체크아웃 일", invoice.getActualReturnDate().toString());
 			setTableCustomer(cellCus, tableCu, f, phrase, "열체일수", numdayOver.toString());
 			setTableCustomer(cellCus, tableCu, f, phrase, "벌금", fine.toString());
 			
-			f = new Font(FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
+			f = new Font(bfont, 14.0f, Font.BOLD, BaseColor.BLACK);
 			phrase = new Phrase("총: " + totalAmount, f);
 			cellCus = new PdfPCell(phrase);
 			cellCus.setColspan(4);
@@ -183,20 +202,27 @@ public class Report {
 			PdfPCell cell;
 
 			// we add a cell with colspan 3
-			cell = new PdfPCell(new Phrase("리스트 서비스"));
+			cell = new PdfPCell(new Phrase("리스트 서비스", font));
 			cell.setColspan(3);
 			cell.setPaddingTop(8f);
+			
 			table.addCell(cell);
 
 			// we add the four remaining cells with addCell()
-			table.addCell("서비스");
-			table.addCell("가격");
-			table.addCell("주문 날");
+			cell = new PdfPCell(new Phrase("서비스", font));
+			table.addCell(cell);
+			cell = new PdfPCell(new Phrase("가격", font));
+			table.addCell(cell);
+			cell = new PdfPCell(new Phrase("주문 일", font));
+			table.addCell(cell);
 
 			for(DetailInvoice d : listDetail) {
-				table.addCell(d.getServices().getName());
+				cell = new PdfPCell(new Phrase(d.getServices().getName(), font));
+				table.addCell(cell);
+				cell = new PdfPCell(new Phrase(d.getServices().getPrice().toString(), font));
 				table.addCell(d.getServices().getPrice().toString());
-				table.addCell(d.getCreatedDate().toString());
+				cell = new PdfPCell(new Phrase(d.getCreatedDate().toString(), font));
+				table.addCell(cell);
 			}
 
 			// Add content to the document using Table objects.
@@ -213,16 +239,24 @@ public class Report {
 	}
 	
 	public static void setTableCustomer(PdfPCell cellCus, PdfPTable tableCu, Font f,Phrase phrase, String title, String content) {
-		phrase = new Phrase(title);
-		cellCus = new PdfPCell(phrase);
-		cellCus.setBorder(Rectangle.NO_BORDER);
-		cellCus.setPaddingTop(20f);
-		tableCu.addCell(cellCus);
-		f = new Font(FontFamily.TIMES_ROMAN, 14.0f, Font.BOLD, BaseColor.BLACK);
-		phrase = new Phrase(content, f);
-		cellCus = new PdfPCell(phrase);
-		cellCus.setBorder(Rectangle.NO_BORDER);
-		cellCus.setPaddingTop(20f);
-		tableCu.addCell(cellCus);
+		try {
+			String fontname = "Fonts\\GulimChe.ttf";
+			BaseFont bfont = BaseFont.createFont(fontname, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			Font font = new Font(bfont, 12);
+			f = new Font(bfont, 14.0f);
+			phrase = new Phrase(title, f);
+			cellCus = new PdfPCell(phrase);
+			cellCus.setBorder(Rectangle.NO_BORDER);
+			cellCus.setPaddingTop(20f);
+			tableCu.addCell(cellCus);
+			
+			phrase = new Phrase(content, f);
+			cellCus = new PdfPCell(phrase);
+			cellCus.setBorder(Rectangle.NO_BORDER);
+			cellCus.setPaddingTop(20f);
+			tableCu.addCell(cellCus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -71,6 +71,12 @@ public class ListServiceController extends FrameController {
     private Label cancel;
     
     @FXML
+    private Label lb_editService;
+    
+    @FXML
+    private Button btn_editService;
+    
+    @FXML
     void addOrUpdate(ActionEvent event) {
     	Services services = new Services();
     	if(id != null) {
@@ -161,6 +167,8 @@ public class ListServiceController extends FrameController {
 						txt_type.setValue(s.getType());
 						id = s.getId();
 						cancel.setVisible(true);
+						lb_editService.setText("서비스 수정");
+						btn_editService.setText("수정");
 					});
 					delete.addEventHandler(MouseEvent.MOUSE_CLICKED, even -> {
 						Services s = row.getItem();
@@ -184,9 +192,9 @@ public class ListServiceController extends FrameController {
 		col_name.prefWidthProperty().bind(table.widthProperty().multiply(0.5));
 		col_price.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
 		col_type.prefWidthProperty().bind(table.widthProperty().multiply(0.2));
-		allType.add("dish");
-		allType.add("drink");
-		allType.add("others");
+		allType.add("Dish");
+		allType.add("Drink");
+		allType.add("Others");
 		txt_type.setItems(allType);
 		for(Services s : serviceRepos.findAll()) {
 			listService.add(s);

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 public class SwitchToScene {
 
 	public static String addRoom = "../view/addroom.fxml";
+	public static String editRoom = "../view/editroom.fxml";
 	public static String listRoom = "../view/listroom.fxml";
 	public static String login = "../view/login.fxml";
 	public static String booking = "../view/booking.fxml";

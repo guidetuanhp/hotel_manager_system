@@ -27,7 +27,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="menu" GridPane.rowIndex="1">
          <children>
-            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인, 체크아웃">
+            <Button id="active" fx:id="booking" alignment="TOP_CENTER" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#openSubMenu" prefHeight="60.0" prefWidth="187.0" styleClass="btn_menu" text="체크인/체크아웃">
                <graphic>
                   <FontAwesomeIconView glyphName="HOTEL" size="20" />
                </graphic>
@@ -93,7 +93,7 @@
                               <Insets left="20.0" right="20.0" />
                            </HBox.margin>
                         </FontAwesomeIconView>
-                        <TextField id="txt_search" prefHeight="30.0" prefWidth="2000.0" promptText="찾기">
+                        <TextField id="txt_search" prefHeight="30.0" prefWidth="2000.0" promptText="search" text="찾기">
                            <HBox.margin>
                               <Insets right="20.0" />
                            </HBox.margin>
@@ -104,6 +104,11 @@
             </GridPane>
             <HBox alignment="CENTER" maxWidth="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0">
                <children>
+                  <FontAwesomeIconView glyphName="GEAR" size="20">
+                     <HBox.margin>
+                        <Insets left="100.0" />
+                     </HBox.margin>
+                  </FontAwesomeIconView>
                   <ImageView fx:id="avatar" fitHeight="37.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="20.0" />
@@ -131,9 +136,9 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                      <children>
-                        <Label alignment="TOP_CENTER" prefHeight="32.0" prefWidth="111.0" text="객실 상태" textAlignment="JUSTIFY">
+                        <Label text="노트">
                            <font>
-                              <Font size="22.0" />
+                              <Font size="21.0" />
                            </font>
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
@@ -141,14 +146,14 @@
                               <Label text="공실" />
                               <ImageView fx:id="empty_room" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
-                                    <Insets left="30.0" />
+                                    <Insets left="70.0" />
                                  </HBox.margin>
                               </ImageView>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="69.0" text="사용 중 객실" />
+                              <Label prefHeight="17.0" prefWidth="61.0" text="사용 객실" />
                               <ImageView fx:id="using_room" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
                                     <Insets left="30.0" />
@@ -158,7 +163,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="정리 중 객실" />
+                              <Label prefHeight="17.0" prefWidth="61.0" text="정리 객실" />
                               <ImageView fx:id="fixing_room" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                                  <HBox.margin>
                                     <Insets left="30.0" />
@@ -166,7 +171,7 @@
                               </ImageView>
                            </children>
                         </HBox>
-                        <Label text="종료">
+                        <Label text="필터 객실">
                            <font>
                               <Font size="15.0" />
                            </font>

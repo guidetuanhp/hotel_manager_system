@@ -21,6 +21,15 @@ public class CustomerRepository {
 		session.close();
 	}
 	
+	public boolean update(Customer customer) {
+		Session session = HibernateConnect.getFactory().openSession();
+		session.getTransaction().begin();
+		session.update(customer);
+		session.getTransaction().commit();
+		session.close();
+		return customer.getId() !=null;
+	}
+	
 	public Customer findByCardId(String cardid) {
 		Session session = HibernateConnect.getFactory().openSession();
 		Query query = session.createQuery("select c from Customer c where c.citizenIdentificationNumber = ?1");

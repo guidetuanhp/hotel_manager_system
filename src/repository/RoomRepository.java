@@ -49,15 +49,14 @@ public class RoomRepository{
 	}
 	
 	public List<Room> findEmptyRoom(){
-		List<Room> list = findAll();
-		List<Room> in = findInhabitedRoom();
-		for(int i=0; i<in.size(); i++) {
-			for(int j=0; j<list.size(); j++) {
-				if(in.get(i).getId() == list.get(j).getId() || list.get(j).getRoomStatus().equalsIgnoreCase("correcting")) {
-					list.remove(j);
-				}
-			}
-		}
+		Timestamp now = new Timestamp(System.currentTimeMillis());
+		List<Room> list = null;
+		Session session = HibernateConnect.getFactory().openSession();
+		Query query = session.createQuery("select r From Room r where r.idCardCustomer IS NUll and r.actived = ?1");
+		query.setParameter(1, 1);
+		list = query.getResultList();
+		System.out.println(list);
+		session.close();
 		return list;
 	}
 	

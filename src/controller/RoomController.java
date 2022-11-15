@@ -78,7 +78,8 @@ public class RoomController extends FrameController {
 
 	@FXML
 	private Button statiitics;
-
+	
+	
 	@FXML
 	private ChoiceBox<String> numberOfPeople;
 
@@ -243,7 +244,8 @@ public class RoomController extends FrameController {
 			update.addEventHandler(MouseEvent.MOUSE_CLICKED, even -> {
 				AddRoomController.id = idRoom;
 				popOver.hide();
-				new SwitchToScene().switchToAddRoom(ev, SwitchToScene.addRoom);
+				new SwitchToScene().switchToAddRoom(ev, SwitchToScene.editRoom);
+				
 			});
 			
 			addCustomerCard.addEventHandler(MouseEvent.MOUSE_CLICKED, even -> {
@@ -256,7 +258,7 @@ public class RoomController extends FrameController {
 				idCard.setPromptText("객실 번호 받기");
 				idCard.setPrefWidth(200);
 				idCard.setPrefHeight(50);
-				Button updateRoom = new Button("객실 번호 확인");
+				Button updateRoom = new Button("객실 접수 번호 확인");
 				updateRoom.setPrefWidth(200);
 				updateRoom.setPrefHeight(50);
 				
